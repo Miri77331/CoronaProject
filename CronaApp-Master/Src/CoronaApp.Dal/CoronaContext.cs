@@ -8,8 +8,8 @@ namespace CoronaApp.Dal
 {
     public class CoronaContext:DbContext
     {
-         DbSet<Patient> Patients { get; set; }
-        DbSet<Location> Lostions { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Location> Locations { get; set; }
         public CoronaContext(DbContextOptions options) : base(options)
         {
 

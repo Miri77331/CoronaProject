@@ -9,6 +9,6 @@ namespace CoronaApp.Dal.Models
         public DateTime EndDate { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public Patient PatientId { get; set; }
+        public string PatientId { get; set; }
     }
 }
