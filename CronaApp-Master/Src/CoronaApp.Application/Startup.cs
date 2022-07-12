@@ -29,7 +29,9 @@ namespace CoronaApp.Api
         {
             services.AddControllers();
             services.AddDbContext<CoronaContext>(item => item.UseSqlServer(Configuration.GetConnectionString("myconn")));
-        
+            services.AddScoped<IPatientDal, PatientDal>();
+            services.AddScoped<ILocationDal, LocationDal>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

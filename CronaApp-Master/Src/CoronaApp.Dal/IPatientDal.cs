@@ -8,6 +8,6 @@ namespace CoronaApp.Dal
     {
         Task<List<Location>> GetPatientLocations(string patintId);
         Task<Location> PostLocation( Location location);
-        Task DeleteLocation(string locationId);
+        Task DeleteLocation(int locationId);
     }
 }

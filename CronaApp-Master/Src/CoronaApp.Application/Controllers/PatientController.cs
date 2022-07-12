@@ -16,7 +16,7 @@ namespace CoronaApp.Api.Controllers
     public class PatientController : ControllerBase
     {
         private readonly IPatientDal _patientDal;
-        public PatientController(PatientDal patientDal)
+        public PatientController(IPatientDal patientDal)
         {
             _patientDal = patientDal;
         }
@@ -36,14 +36,14 @@ namespace CoronaApp.Api.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public async Task<ActionResult<Location>> Post( [FromBody] Location location)
+        public async Task<ActionResult<Location>> Post([FromBody] Location location)
         {
             return await _patientDal.PostLocation(location);
         }
 
         // DELETE api/<UserController>
         [HttpDelete("{locationId}")]
-        public async Task Delete(string locationId)
+        public async Task Delete(int locationId)
         {
             await _patientDal.DeleteLocation(locationId);
         }

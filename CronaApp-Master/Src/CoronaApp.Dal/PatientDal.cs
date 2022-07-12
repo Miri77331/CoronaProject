@@ -16,7 +16,7 @@ namespace CoronaApp.Dal
         {
             _context = coronaContext;
         }
-        public async Task DeleteLocation(string locationId)
+        public async Task DeleteLocation(int locationId)
         {
             var locationToDelete = _context.Locations.FindAsync(locationId).Result;
             _context.Locations.Remove(locationToDelete);
@@ -31,7 +31,10 @@ namespace CoronaApp.Dal
 
         public async Task<Location> PostLocation(Location location)
         {
-            return (await _context.Locations.AddAsync(location)).Entity;
+            var l= await _context.Locations.AddAsync(location);
+            await _context.SaveChangesAsync();
+            return l.Entity;
+
         }
     }
 }

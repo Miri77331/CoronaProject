@@ -14,7 +14,12 @@ namespace CoronaApp.Dal
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Patient>().HasData(
+                new Patient() {Id="0", Name = "John" },
+                new Patient() { Id = "1", Name = "Chris" });
 
-      
+        }
     }
 }

@@ -28,5 +28,17 @@ namespace CoronaApp.Dal
             return await _context.Locations.Where(location => location.City.Equals(city)).
                 ToListAsync();
         }
+
+        
+        public async Task<List<Location>> GetLocationsByDate(LocationSearch locationSearch)
+        {
+            return await _context.Locations.Where(location => DateTime.Compare(location.StartDate, locationSearch.FromDate) >=0 &&
+                                                              DateTime.Compare(location.EndDate, locationSearch.ToDate)<=0).ToListAsync();     
+        }
+
+        public async Task<List<Location>> GetLocationsByAge(LocationSearch locationSearch)
+        {
+            return await _context.Locations.Include(l=>l.Patient).Where(location => location.Patient.Age==locationSearch.Age).ToListAsync();
+        }
     }
 }

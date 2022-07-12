@@ -10,5 +10,7 @@ namespace CoronaApp.Dal
     {
         Task<List<Location>> GetAllLocations();
         Task<List<Location>> GetLocationsByCity(string city);
+        Task<List<Location>> GetLocationsByDate(LocationSearch locationSearch);
+        Task<List<Location>> GetLocationsByAge(LocationSearch locationSearch);
     }
 }

@@ -16,7 +16,7 @@ namespace CoronaApp.Api.Controllers
     {
         private readonly ILocationDal _locationDal;
 
-        public LocationController(LocationDal locationDal)
+        public LocationController(ILocationDal locationDal)
         {
             _locationDal = locationDal;
         }        
@@ -46,8 +46,30 @@ namespace CoronaApp.Api.Controllers
             return res;
         }
 
-     
+        //filter by date
+        [HttpGet]
+        [Route("GetLocationsByDate")]
+        public async Task<ActionResult<List<Location>>> Get([FromBody] LocationSearch locationSearch)
+        {
+            var res = await _locationDal.GetLocationsByDate(locationSearch);
+            if (res == null)
+            {
+                return NotFound();
+            }
+            return res;
+        }
 
-      
+        //filter by age
+        [HttpGet]
+        [Route("GetLocationsByAge")]
+        public async Task<ActionResult<List<Location>>> GetByAge([FromBody] LocationSearch locationSearch)
+        {
+            var res = await _locationDal.GetLocationsByAge(locationSearch);
+            if (res == null)
+            {
+                return NotFound();
+            }
+            return res;
+        }
     }
 }
