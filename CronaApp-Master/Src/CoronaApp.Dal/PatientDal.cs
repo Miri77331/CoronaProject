@@ -10,6 +10,7 @@ namespace CoronaApp.Dal
 {
     public class PatientDal : IPatientDal
     {
+
         private readonly CoronaContext _context;
         public PatientDal(CoronaContext coronaContext)
         {
