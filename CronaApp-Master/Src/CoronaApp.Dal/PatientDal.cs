@@ -36,5 +36,11 @@ namespace CoronaApp.Dal
             return l.Entity;
 
         }
+
+        public async Task PostPatient(Patient patient)
+        {
+            await _context.Patients.AddAsync(patient);
+            await _context.SaveChangesAsync();
+        }
     }
 }

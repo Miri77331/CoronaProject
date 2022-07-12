@@ -40,6 +40,11 @@ namespace CoronaApp.Api.Controllers
         {
             return await _patientDal.PostLocation(location);
         }
+        [HttpPost("patient")]
+        public async Task Post([FromBody] Patient patient)
+        {
+             await _patientDal.PostPatient(patient);
+        }
 
         // DELETE api/<UserController>
         [HttpDelete("{locationId}")]
