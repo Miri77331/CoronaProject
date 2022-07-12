@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CoronaApp.Dal;
+using CoronaApp.Dal.Models;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,28 +15,37 @@ namespace CoronaApp.Api.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-      
-
-        // GET api/<PatientController>/5
-        [HttpGet("{id}")]
-        public object Get(string id)
+        private readonly IPatientDal _patientDal;
+        public PatientController(PatientDal patientDal)
         {
-            return "value";
+            _patientDal = patientDal;
         }
 
-        // POST api/<PatientController>
+        // GET api/<UserController>/5
+        [HttpGet("{patintId}")]
+        public async Task<ActionResult<List<Location>>> Get(string patintId)
+        {
+            var res = await _patientDal.GetPatientLocations(patintId);
+            if (res == null)
+            {
+                return NotFound();
+            }
+            return res;
+
+        }
+
+        // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<Location>> Post( [FromBody] Location location)
         {
-    
+            return await _patientDal.PostLocation(location);
         }
 
-        // PUT api/<PatientController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // DELETE api/<UserController>
+        [HttpDelete("{locationId}")]
+        public async Task Delete(string locationId)
         {
+            await _patientDal.DeleteLocation(locationId);
         }
-
-     
     }
 }
