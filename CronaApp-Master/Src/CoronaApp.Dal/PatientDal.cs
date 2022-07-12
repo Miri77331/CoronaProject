@@ -25,7 +25,8 @@ namespace CoronaApp.Dal
 
         public async Task<List<Location>> GetPatientLocations(string patintId)
         {
-            return await _context.Locations.Where(l => l.PatientId.Equals(patintId)).ToListAsync();
+           
+           return await _context.Locations.Where(l => l.PatientId.Equals(patintId)).ToListAsync();
         }
 
         public async Task<Location> PostLocation(Location location)

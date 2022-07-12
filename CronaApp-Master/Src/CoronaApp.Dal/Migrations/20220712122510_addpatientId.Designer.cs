@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoronaApp.Dal.Migrations
 {
     [DbContext(typeof(CoronaContext))]
-    [Migration("20220712104858_initialmigration")]
-    partial class initialmigration
+    [Migration("20220712122510_addpatientId")]
+    partial class addpatientId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,7 +37,7 @@ namespace CoronaApp.Dal.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientIdId")
+                    b.Property<string>("PatientId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("StartDate")
@@ -45,7 +45,7 @@ namespace CoronaApp.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PatientIdId");
+                    b.HasIndex("PatientId");
 
                     b.ToTable("Locations");
                 });
@@ -65,11 +65,11 @@ namespace CoronaApp.Dal.Migrations
 
             modelBuilder.Entity("CoronaApp.Dal.Models.Location", b =>
                 {
-                    b.HasOne("CoronaApp.Dal.Models.Patient", "PatientId")
+                    b.HasOne("CoronaApp.Dal.Models.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientIdId");
+                        .HasForeignKey("PatientId");
 
-                    b.Navigation("PatientId");
+                    b.Navigation("Patient");
                 });
 #pragma warning restore 612, 618
         }
