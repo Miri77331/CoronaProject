@@ -21,7 +21,7 @@ namespace CoronaApp.Api.Controllers
             _locationDal = locationDal;
         }        
         //get all locations
-        // GET: api/<LocationsController>
+        // GET: api/<LocationController>
         [HttpGet]
         public async Task<ActionResult<List<Location>>> Get()
         {
@@ -34,7 +34,7 @@ namespace CoronaApp.Api.Controllers
         }
 
         //get locations by city
-        // GET api/<LocationsController>/5
+        // GET api/<LocationController>/5
         [HttpGet("city")]
         public async Task<ActionResult<List<Location>>> Get([FromQuery] string city)
         {
@@ -47,8 +47,7 @@ namespace CoronaApp.Api.Controllers
         }
 
         //filter by date
-        [HttpGet]
-        [Route("GetLocationsByDate")]
+        [HttpGet("GetLocationsByDate")]
         public async Task<ActionResult<List<Location>>> Get([FromBody] LocationSearch locationSearch)
         {
             var res = await _locationDal.GetLocationsByDate(locationSearch);
@@ -60,8 +59,7 @@ namespace CoronaApp.Api.Controllers
         }
 
         //filter by age
-        [HttpGet]
-        [Route("GetLocationsByAge")]
+        [HttpGet("GetLocationsByAge")]
         public async Task<ActionResult<List<Location>>> GetByAge([FromBody] LocationSearch locationSearch)
         {
             var res = await _locationDal.GetLocationsByAge(locationSearch);

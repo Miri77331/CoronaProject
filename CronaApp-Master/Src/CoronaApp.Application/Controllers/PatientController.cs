@@ -21,7 +21,7 @@ namespace CoronaApp.Api.Controllers
             _patientDal = patientDal;
         }
 
-        // GET api/<UserController>/5
+        // GET api/<PatientController>/5
         [HttpGet("{patintId}")]
         public async Task<ActionResult<List<Location>>> Get(string patintId)
         {
@@ -34,7 +34,7 @@ namespace CoronaApp.Api.Controllers
 
         }
 
-        // POST api/<UserController>
+        // POST api/<PatientController>
         [HttpPost]
         public async Task<ActionResult<Location>> Post([FromBody] Location location)
         {
@@ -46,7 +46,7 @@ namespace CoronaApp.Api.Controllers
              await _patientDal.PostPatient(patient);
         }
 
-        // DELETE api/<UserController>
+        // DELETE api/<PatientController>
         [HttpDelete("{locationId}")]
         public async Task Delete(int locationId)
         {
